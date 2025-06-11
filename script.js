@@ -10,12 +10,13 @@ const media = navigator.mediaDevices.getUserMedia({ audio: false, video: {width:
          video.play();
          contentWidth = video.clientWidth;
          contentHeight = video.clientHeight;
-         canvasUpdate(); // 次で記述
-         checkImage(); // 次で記述
+         canvasUpdate();
+         checkImage();
       }
    }).catch((e) => {
       console.log(e);
    });
+
 // カメラ映像のキャンバス表示
 const cvs = document.getElementById('camera-canvas');
 const ctx = cvs.getContext('2d');
@@ -25,11 +26,7 @@ const canvasUpdate = () => {
    ctx.drawImage(video, 0, 0, contentWidth, contentHeight);
    requestAnimationFrame(canvasUpdate);
 }
-const code = jsQR(imageData, width, height, options?);
 
-if (code) {
-  console.log("Found QR code", code);
-}
 // QRコードの検出
 const rectCvs = document.getElementById('rect-canvas');
 const rectCtx =  rectCvs.getContext('2d');
@@ -43,12 +40,15 @@ const checkImage = () => {
    if (code) {
       console.log("QRcodeが見つかりました", code);
       drawRect(code.location);
+      document.getElementById('qr-msg').textContent = `QRコード：${code.data}`;
    } else {
       console.log("QRcodeが見つかりません…", code);
       rectCtx.clearRect(0, 0, contentWidth, contentHeight);
+      document.getElementById('qr-msg').textContent = `QRコード: 見つかりません`;
    }
    setTimeout(()=>{ checkImage() }, 500);
 }
+
 // 四辺形の描画
 const drawRect = (location) => {
    rectCvs.width = contentWidth;
