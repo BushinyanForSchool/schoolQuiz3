@@ -3,12 +3,7 @@ const video = document.getElementById('video');
 let contentWidth;
 let contentHeight;
 
-const media = navigator.mediaDevices.getUserMedia({ audio: false,
-  video: {
-    width: { ideal: 640 },
-    height: { ideal: 480 },
-    facingMode: { exact: "environment" }
-  }})
+const media = navigator.mediaDevices.getUserMedia({ audio: false, video: {width:640, height:480　,facingMode: { exact: "environment" }} })
    .then((stream) => {
       video.srcObject = stream;
       video.onloadeddata = () => {
@@ -26,24 +21,10 @@ const media = navigator.mediaDevices.getUserMedia({ audio: false,
 const cvs = document.getElementById('camera-canvas');
 const ctx = cvs.getContext('2d');
 const canvasUpdate = () => {
-   // 画面サイズに合わせる
-  const screenW = window.innerWidth;
-  const screenH = window.innerHeight;
-
-  cvs.width = screenW;
-  cvs.height = screenH;
-
-  // アスペクト比を保って描画（中央に表示）
-  const scale = Math.min(screenW / contentWidth, screenH / contentHeight);
-  const drawW = contentWidth * scale;
-  const drawH = contentHeight * scale;
-  const offsetX = (screenW - drawW) / 2;
-  const offsetY = (screenH - drawH) / 2;
-
-  ctx.clearRect(0, 0, cvs.width, cvs.height);
-  ctx.drawImage(video, offsetX, offsetY, drawW, drawH);
-
-  requestAnimationFrame(canvasUpdate);
+   cvs.width = contentWidth;
+   cvs.height = contentHeight;
+   ctx.drawImage(video, 0, 0, contentWidth, contentHeight);
+   requestAnimationFrame(canvasUpdate);
 }
 
 // QRコードの検出
