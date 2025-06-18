@@ -12,8 +12,8 @@ const media = navigator.mediaDevices.getUserMedia({ audio: false, video: {
       video.srcObject = stream;
       video.onloadeddata = () => {
          video.play();
-         contentWidth = video.videoWidth*2;
-         contentHeight = video.videoHeight*2;
+         contentWidth = video.videoWidth;
+         contentHeight = video.videoHeight;
          canvasUpdate();
          checkImage();
       }
@@ -25,9 +25,9 @@ const media = navigator.mediaDevices.getUserMedia({ audio: false, video: {
 const cvs = document.getElementById('camera-canvas');
 const ctx = cvs.getContext('2d');
 const canvasUpdate = () => {
-   cvs.width = contentWidth;
-   cvs.height = contentHeight;
-   ctx.drawImage(video, 0, 0, contentWidth, contentHeight);
+   cvs.width = contentWidth*2;
+   cvs.height = contentHeight*2;
+   ctx.drawImage(video, 0, 0, contentWidth*2, contentHeight*2);
    requestAnimationFrame(canvasUpdate);
 }
 
