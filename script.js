@@ -28,6 +28,13 @@ const canvasUpdate = () => {
     cvs.width = window.innerWidth;
     cvs.height = window.innerHeight;
    ctx.drawImage(video, 0, 0,canvas.width, canvas.height*canvas.width/contentWidth);
+
+    const image = new Image();
+    image.src = 'image.jpg';
+
+    image.onload = () => {
+      ctx.drawImage(image, 0, 0);
+    };
    requestAnimationFrame(canvasUpdate);
 }
 
