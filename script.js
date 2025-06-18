@@ -12,8 +12,8 @@ const media = navigator.mediaDevices.getUserMedia({ audio: false, video: {
       video.srcObject = stream;
       video.onloadeddata = () => {
          video.play();
-         contentWidth = video.videoWidth;
-         contentHeight = video.videoHeight;
+         contentWidth = video.videoWidth*2;
+         contentHeight = video.videoHeight*2;
          canvasUpdate();
          checkImage();
       }
