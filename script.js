@@ -25,8 +25,8 @@ const media = navigator.mediaDevices.getUserMedia({ audio: false, video: {
 const cvs = document.getElementById('camera-canvas');
 const ctx = cvs.getContext('2d');
 const canvasUpdate = () => {
-    cvs.width = window.innerWidth;
-    cvs.height = window.innerHeight;
+    cvs.width = contentWidth;
+    cvs.height = contentHeight;
    ctx.drawImage(video, 0, 0,contentWidth, contentHeight);
 
     
