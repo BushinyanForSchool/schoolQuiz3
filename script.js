@@ -25,9 +25,9 @@ const media = navigator.mediaDevices.getUserMedia({ audio: false, video: {
 const cvs = document.getElementById('camera-canvas');
 const ctx = cvs.getContext('2d');
 const canvasUpdate = () => {
-   cvs.width = 300px;
-   cvs.height = 500px;
-   ctx.drawImage(video, 0, 0, 300px, 500px);
+    cvs.width = window.innerWidth;
+    cvs.height = window.innerHeight;
+   ctx.drawImage(video, 0, 0,cvs.width, cvs.height);
    requestAnimationFrame(canvasUpdate);
 }
 
