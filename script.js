@@ -7,7 +7,7 @@ const media = navigator.mediaDevices.getUserMedia({ audio: false,
   video: {
     width: { ideal: 640 },
     height: { ideal: 480 },
-    facingMode: { ideal: "environment" }
+    facingMode: { exact: "environment" }
   }})
    .then((stream) => {
       video.srcObject = stream;
