@@ -30,7 +30,7 @@ const canvasUpdate = () => {
    ctx.drawImage(video, 0, 0,canvas.width, canvas.height*canvas.width/contentWidth);
 
     const image = new Image();
-    image.src = 'image.jpg';
+    image.src = 'd5fc244a-8a5b-4932-967c-ea86239f24dd.jpg';
 
     image.onload = () => {
       ctx.drawImage(image, 0, 0);
