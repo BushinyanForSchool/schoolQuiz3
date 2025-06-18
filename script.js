@@ -27,7 +27,7 @@ const ctx = cvs.getContext('2d');
 const canvasUpdate = () => {
    cvs.width = contentWidth*2;
    cvs.height = contentHeight*2;
-   ctx.drawImage(video, 0, 0, contentWidth, contentHeight);
+   ctx.drawImage(video, 0, 0, 300px, 500px);
    requestAnimationFrame(canvasUpdate);
 }
 
