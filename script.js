@@ -3,6 +3,28 @@ const video = document.getElementById('video');
 let contentWidth;
 let contentHeight;
 
+// スマホで外カメラを優先して起動
+    navigator.mediaDevices.getUserMedia({
+      audio: false,
+      video: {
+        width: { ideal: 640 },
+        height: { ideal: 480 },
+        facingMode: { ideal: "environment" } // ★ 外カメラを優先
+      }
+    }).then((stream) => {
+      video.srcObject = stream;
+      video.onloadeddata = () => {
+        video.play();
+        contentWidth = video.videoWidth;
+        contentHeight = video.videoHeight;
+        canvasUpdate();
+        checkImage();
+      };
+    }).catch((e) => {
+      console.error("カメラの取得に失敗:", e);
+      document.getElementById('qr-msg').textContent = "カメラが使用できません";
+    });
+
 const media = navigator.mediaDevices.getUserMedia({ audio: false, video: {width:640, height:480} })
    .then((stream) => {
       video.srcObject = stream;
